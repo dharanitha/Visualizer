@@ -1,0 +1,84 @@
+define({
+  preShow : function(){
+   var accounts = [
+  {
+  "accountType":"My Checking",
+  "accountNum":"3254"
+  },
+  {
+  "accountType":"My Checking",
+  "accountNum":"0792"
+  },
+  {
+  "accountType":"My Checking",
+  "accountNum":"7896"
+  },
+  {
+  "accountType":"My Checking",
+  "accountNum":"3465"
+  },
+  {
+  "accountType":"My Savings",
+  "accountNum":"1268"
+  },
+  {
+  "accountType":"My Savings",
+  "accountNum":"4567"
+  }
+  ];
+   this.insertData(accounts);
+ },
+  insertData : function(accounts){
+  var accountData = [];
+  var accountTypeData={};
+   var index;
+   
+   
+    for(index=0; index<accounts.length; index++)
+      {
+    if(accounts[index].accountType === "My Checking")
+      {
+        
+     accountTypeData["lbl1Data"]={
+       "text" : accounts[index].accountType
+        };
+        accountTypeData["lbl2Data"]={
+          "text" : accounts[index].accountNum
+        };
+     
+        var widgetDataMap={
+          "lblTypeValue" : "lbl1Data",
+          "lblAccountNumberValue" : "lbl2Data"
+        };
+        accountData.push(accountTypeData);
+        this.view.Segment.widgetDataMap=widgetDataMap;
+            this.view.Segment.setData(accountData);
+        accountTypeData={};
+        
+      } 
+        
+      }
+   for(index=0;index<accounts.length;index++)
+     {
+       if(accounts[index].accountType === "My Savings")
+         {
+           accountTypeData["lbl1Data"]={
+             "text" : accounts[index].accountType
+           };
+           accountTypeData["lbl2Data"]={
+             "text" : accounts[index].accountNum
+           };
+           var widgetMap = {
+             "lblTypeValue" : "lbl1Data",
+             "lblAccountNumberValue" : "lbl2Data"
+           };
+           accountData.push(accountTypeData);
+           this.view.Segment.widgetDataMap = widgetMap;
+             this.view.Segment.setData(accountData);
+           accountTypeData={};
+         }
+     }
+ 
+   
+ },
+});
